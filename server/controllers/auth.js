@@ -18,7 +18,8 @@ export const registerController = async (req, res) => {
         password: hashedPassword,
       });
       const token = jwt.sign({ id: user._id }, JWT_SECRET);
-      res.status(201).json({ user: user, token: token });
+      const savedUser = await user.save();
+      res.status(201).json({ user: savedUser, token: token });
     }
   } catch (reason) {
     res.status(500).json({ reason: "Register error, reason: " + reason });
@@ -35,7 +36,8 @@ export const loginController = async (req, res) => {
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (passwordMatch) {
       const token = jwt.sign({ id: user._id }, JWT_SECRET);
-      res.status(200).json({ user: user, token: token });
+      const savedUser = await user.save();
+      res.status(200).json({ user: savedUser, token: token });
     } else {
       res.status(401).json({ reason: "Autherror" });
     }
@@ -43,4 +45,3 @@ export const loginController = async (req, res) => {
     res.status(500).json({ reason: "Login error, reason: " + reason });
   }
 };
-

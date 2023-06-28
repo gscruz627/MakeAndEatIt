@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema({
+    owner: {
+        type: String,
+        required: true
+    },
     bun: {
         type: String,
         required: true
