@@ -6,6 +6,8 @@ import cors from "cors"
 import mongoose from "mongoose"
 import morgan from "morgan";
 
+import authRoutes from "./routes/authRoutes.js";
+
 dotenv.config();
 const PORT = process.env.PORT;
 const MONGOOSE_URL = process.env.MONGOOSE_URL;
@@ -27,7 +29,7 @@ app.use(morgan("combined"));
 
 app.use(express.static("public"))
 
-app.get("/", (req, res) => {res.send("hello world")});
+app.set("/auth", authRoutes);
 
 mongoose.connect(MONGOOSE_URL).then( () => {
     console.log("MONGOOSE CONNECTED");
