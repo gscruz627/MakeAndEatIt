@@ -1,11 +1,9 @@
-import React from 'react'
+import React, { useState } from "react";
 
 const LoginView = () => {
   return (
-    <div className="form">
-        <h1>Login</h1>
-    </div>
+    <div>Hellow</div>
   )
-}
+};
 
-export default LoginView
+export default LoginView;

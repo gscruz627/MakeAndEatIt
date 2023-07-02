@@ -6,11 +6,11 @@ import {
   deleteOrderController,
 } from "../controllers/orders.js";
 
-const mainRoutes = express.Router();
+const router = express.Router();
 
-mainRoutes.get("order/:id", getOrderController);
-mainRoutes.get("orders", getAllOrdersController);
-mainRoutes.post("order", newOrderController);
-mainRoutes.delete("order/:id", deleteOrderController);
+router.get("order/:id", getOrderController);
+router.get("orders", getAllOrdersController);
+router.post("order", newOrderController);
+router.delete("order/:id", deleteOrderController);
 
-export default mainRoutes;
+export default router;
