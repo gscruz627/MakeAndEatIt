@@ -7,7 +7,7 @@ import mongoose from "mongoose"
 import morgan from "morgan";
 
 import authRoutes from "./routes/authRoutes.js";
-import mainRoutes from "./routes/mainRoutes.js";
+import mainRoutes from "./routes/mainRoutes.js"
 
 dotenv.config();
 const PORT = process.env.PORT;
@@ -16,22 +16,18 @@ const CLIENT_URL = process.env.CLIENT_URL;
 const SERVER_URL = process.env.SERVER_URL;
 
 const app = express();
+app.use(helmet());
+app.use(morgan("common"));
 app.use(bodyParser.json({ limit: "30mb", extended: true}))
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}))
-app.use((request, response, next) => {
-    request.headers.origin = request.headers.referer; // Set the origin header to the referer
-    next();
-});
-  
+
 // MODIFY AT PROD, ONLY ALLOW CLIENT_URL TO CONNECT TO THIS API
 app.use(cors());
-app.use(helmet());
-app.use(morgan("combined"));
 
 app.use(express.static("public"))
 
-app.set("/auth", authRoutes);
-app.set("/", mainRoutes);
+app.use("/API/auth", authRoutes);
+app.use("/API/", mainRoutes);
 
 mongoose.connect(MONGOOSE_URL).then( () => {
     console.log("MONGOOSE CONNECTED");

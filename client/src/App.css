@@ -1,11 +1,15 @@
+:root{
+  --angularBrown: #2e2c28;
+  --solidBeige: #fef1d4;
+  --solidGold: #f6c458;
+}
 body {
-  //background-color: #fde9c3;
-  background-image: url("../public/vectorBg.png");
+  background-color: var(--solidBeige);
   background-size: 100%;
 }
 nav {
-  background-color: #fde0c3;
-  font-family: "Lilita One";
+  background-color: var(--angularBrown);
+  font-family: "Geologica";
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,24 +18,129 @@ nav {
 }
 nav h1 {
   font-size: 36px;
-  color: #6e542b;
+  color: var(--solidBeige);
 }
 nav h3 {
   margin: auto 3rem;
-  color: #6e542b;
+  color: var(--solidBeige);
 }
 nav h3:hover, nav h1:hover {
-  color: #3e240b;
+  color: var(--solidGold);
 }
 nav div {
   display:none;
+}
+.form{
+  max-width: 300px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: space-around;
+  padding: 2rem;
+  border: 1.5px solid darkred;
+  border-radius: 5px;
+}
+.form > div:first-child{
+  margin: -2rem auto 2rem -2rem;
+  text-align:center;
+  padding: 0.5rem;
+  width: calc(100% + 4rem);
+  background-color: darkred;
+  color: #FFF;
+}
+.form h1{
+  font-family: "Geologica";
+}
+.form *:not(h1){
+  font-family: "Rubik";
+}
+.form label{
+  font-weight: bold;
+}
+.form label, .form small, .form input, .form button{
+  margin: 0.5rem 0;
+}
+.form input{
+  width:100%;
+  padding: 0.75rem 1rem;
+  outline: none;
+  border: none;
+}
+.form button{
+  padding:0.75rem 1rem;
+  background-color: darkred;
+  color: #FFF;
+}
+.form button:disabled{
+  opacity: 0.5;
+}
+.maker-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 5rem 2rem 2rem 2rem;
+}
+.maker-item{
+  width:100%;
+  flex: 1;
+  padding: 1rem;
+  font-family: 'Rubik';
+  text-align: center;
+}
+.maker-item h2{
+  font-family: "Geologica";
+  color: var(--angularBrown)
+}
+.maker-item:nth-child(2){
+  flex: 2;
+}
+.maker-item input{
+  border:none; outline:none;
+  background-color: transparent;
+  border-bottom: 2px solid var(--angularBrown);
+  width: 80%;
+  text-align: center;
+  font-size: 24px;
+  color: var(--angularBrown);
+  font-family: "Geologica"
+}
+.maker-item input::placeholder{
+  opacity: 0.5;
+  color: gray;
+}
+.maker-inner-button{
+  padding:0.5rem 1rem;
+  border-radius:25px;
+  color: #FFF;
+  font-weight: bold;
+  margin: 0.2rem;
+  transition: all 200ms;
+}
+.maker-inner-button:hover{
+  opacity:0.5;
+}
+.maker-item > p{
+  margin-top: 1.5rem;
+}
+.maker-item ul, .maker-item li {
+  text-align:left;
+  list-style-type: circle
+}
+.sandwich-card{
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  margin-top: 2rem;
+}
+.sandwich-card img{
+  width:75%;
+  margin: auto auto;
 }
 @media screen and (max-width: 768px){
   nav {
     display:block;
     height: 100px;
     padding: 1rem;
-
   }
   nav div {
     display: flex;
@@ -40,5 +149,8 @@ nav div {
   }
   nav div * {
     display: inline;
+  }
+  nav h1{
+    font-size: 24px;
   }
 }
