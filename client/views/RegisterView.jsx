@@ -48,8 +48,8 @@ const RegisterView = () => {
           "password": password
         })
       });
-      const user = userRequest.json();
-      dispatch(setLogin({user: user.use, token: user.token}))
+      const user = await userRequest.json();
+      dispatch(setLogin({user: user.user, token: user.token}))
     } else {
       alert("There is some authentication error, try filling your data again")
       setUsername("");

@@ -75,6 +75,67 @@ nav div {
 .form button:disabled{
   opacity: 0.5;
 }
+.maker-container{
+  display: flex;
+  justify-content: space-between;
+  margin: 5rem 2rem 2rem 2rem;
+}
+.maker-item{
+  width:100%;
+  flex: 1;
+  padding: 1rem;
+  font-family: 'Rubik';
+  text-align: center;
+}
+.maker-item h2{
+  font-family: "Geologica";
+  color: var(--angularBrown)
+}
+.maker-item:nth-child(2){
+  flex: 2;
+}
+.maker-item input{
+  border:none; outline:none;
+  background-color: transparent;
+  border-bottom: 2px solid var(--angularBrown);
+  width: 80%;
+  text-align: center;
+  font-size: 24px;
+  color: var(--angularBrown);
+  font-family: "Geologica"
+}
+.maker-item input::placeholder{
+  opacity: 0.5;
+  color: gray;
+}
+.maker-inner-button{
+  padding:0.5rem 1rem;
+  border-radius:25px;
+  color: #FFF;
+  font-weight: bold;
+  margin: 0.2rem;
+  transition: all 200ms;
+}
+.maker-inner-button:hover{
+  opacity:0.5;
+}
+.maker-item > p{
+  margin-top: 1.5rem;
+}
+.maker-item ul, .maker-item li {
+  text-align:left;
+  list-style-type: circle
+}
+.sandwich-card{
+  display:flex;
+  flex-direction: column;
+  width:100%;
+  margin-top: 2rem;
+}
+.sandwich-card img{
+  width:75%;
+  margin: auto auto;
+}
 @media screen and (max-width: 768px){
   nav {
     display:block;
