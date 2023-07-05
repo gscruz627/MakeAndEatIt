@@ -74,12 +74,11 @@ const MakeOrderView = () => {
             <button
               onClick={() => {
                 setBunType(bread);
-                setFinalStack([
-                  `${LOCAL_URL}/${data.images
+                setFinalStack([`/${data.images
                     .filter((item) => item.name === bread)
                     .map((item) => item.src[0])}`,
                   ...finalStack.slice(1, finalStack.length - 1),
-                  `${LOCAL_URL}/${data.images
+                  `/${data.images
                     .filter((item) => item.name === bread)
                     .map((item) => item.src[1])}`,
                 ]);
