@@ -27,7 +27,7 @@ app.use(cors());
 app.use(express.static("public"))
 
 app.use("/API/auth", authRoutes);
-app.use("/API/", mainRoutes);
+app.use("/API", mainRoutes);
 
 mongoose.connect(MONGOOSE_URL).then( () => {
     console.log("MONGOOSE CONNECTED");

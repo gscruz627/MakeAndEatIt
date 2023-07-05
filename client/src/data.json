@@ -18,67 +18,61 @@
       "Bacon",
       "Letucce"
     ],
-    "sauces": [
-      "Ketchup",
-      "Mayonnaise",
-      "Mustard",
-      "Hot Sauce"
-    ],
     "images": [
       {
         "name": "Bun",
         "src": [
-          "public/bun_upper.png",
-          "public/bun_lower.png"
+          "/bun_upper.png",
+          "/bun_lower.png"
         ]
       },
       {
         "name": "Sliced Bread",
-        "src": ["public/sandwich_bun.png", "public/sandwich_bun.png"]
+        "src": ["/sandwich_bun.png", "/sandwich_bun.png"]
       },
       {
         "name": "Crustless Sliced Bread",
-        "src": ["public/crustless_sandwich_bun.png", "public/crustless_sandwich_bun.png"]
+        "src": ["/crustless_sandwich_bun.png", "/crustless_sandwich_bun.png"]
       },
       {
         "name": "Burger",
-        "src": "public/burger.png"
+        "src": "/burger.png"
       },
       {
         "name": "Chicken Patty",
-        "src": "public/chicken_patty.png"
+        "src": "/chicken_patty.png"
       },
       {
         "name": "Sausage",
-        "src": "public/sausage.png"
+        "src": "/sausage.png"
       },
       {
         "name": "Cheese",
-        "src": "public/cheese.png"
+        "src": "/cheese.png"
       },
       {
         "name": "Pickles",
-        "src": "public/pickles.png"
+        "src": "/pickles.png"
       },
       {
         "name": "Onion Rings",
-        "src" : "public/onion_rings.png"
+        "src" : "/onion_rings.png"
       },
       {
         "name": "Tomato Slice",
-        "src" : "public/tomato.png"
+        "src" : "/tomato.png"
       },
       {
         "name": "Peppers",
-        "src" : "public/peppers.png"
+        "src" : "/pepper.png"
       },
       {
         "name": "Bacon",
-        "src" : "public/bacon.png"
+        "src" : "/bacon.png"
       },
       {
         "name": "Letucce",
-        "src" : "public/letucce.png"
+        "src" : "/letucce.png"
       }      
     ]
   }

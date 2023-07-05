@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const OrderSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true
+    },
     owner: {
         type: String,
         required: true
@@ -12,14 +16,11 @@ const OrderSchema = new mongoose.Schema({
     main: {
         type: String
     },
-    mainNumber: {
-        type: Number
-    },
-    sides: {
+    toppings: {
         type: Array,
         default: []
     },
-    toppings: {
+    finalStack: {
         type: Array,
         default: []
     }

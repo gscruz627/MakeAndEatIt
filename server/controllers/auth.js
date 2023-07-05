@@ -32,16 +32,19 @@ export const loginController = async (req, res) => {
   try {
     const { username, password } = req.body;
     const user = await User.findOne({ username: username });
+    console.log(user);
     if (!user) {
-      res.status(401).json({ reason: "Autherror" });
+      res.status(401).json({ reason: "Autherror, no user" });
+      return;
     }
     const passwordMatch = await bcrypt.compare(password, user.password);
     if (passwordMatch) {
       const token = jwt.sign({ id: user._id }, JWT_SECRET);
       const savedUser = await user.save();
-      res.status(200).json({ user: savedUser, token: token });
+      return res.status(200).json({ user: savedUser, token: token });
     } else {
-      res.status(401).json({ reason: "Autherror" });
+      res.status(401).json({ reason: "Autherror, no match" });
+      return;
     }
   } catch (reason) {
     res.status(500).json({ reason: "Login error, reason: " + reason });

@@ -15,8 +15,8 @@ export const getOrderController = async (req, res) => {
 
 export const getAllOrdersController = async (req, res) => {
   try {
-    const { userId } = req.body;
-    const orders = await Order.find({ owner: userId });
+    const { username } = req.params;
+    const orders = await Order.find({ owner: username });
     res.status(200).json(orders);
   } catch (reason) {
     res.status(500).json({ reason: "Get All Orders Error, reason: " + reason });
@@ -25,17 +25,18 @@ export const getAllOrdersController = async (req, res) => {
 
 export const newOrderController = async (req, res) => {
   try {
-    const { bun, main, mainNumber, userId, sides, toppings } = req.body;
+    const { name, bun, main, username, toppings, finalStack } = req.body;
     const order = new Order({
-      owner: userId,
+      name,
+      owner: username,
       bun,
       main,
-      mainNumber,
-      sides,
       toppings,
+      finalStack,
     });
-    const savedOrder = order.save();
-    res.status(201).json(savedOrder);
+    await order.save();
+    const orders = await Order.find({owner: username})
+    res.status(201).json(orders);
   } catch (reason) {
     res.status(500).json({ reason: "New Order Error, reason: " + reason });
   }
@@ -43,14 +44,16 @@ export const newOrderController = async (req, res) => {
 
 export const deleteOrderController = async (req, res) => {
   try {
-    const { id, userId } = req.body;
-    const order = await Order.findById(order);
+    const { id, username } = req.body;
+    const order = await Order.findById(id);
     if (!order) {
       res.status(404).json({ reason: "Order Not Found" });
     }
-    if (userId === order.owner) {
+    if (username === order.owner) {
       await Order.deleteOne({ _id: id });
       res.status(200);
+    } else {
+      res.status(403).json({reason: "Non-Author"})
     }
   } catch (reason) {
     res.status(500).json({ reason: "Delete Order Error, reason: " + reason });
