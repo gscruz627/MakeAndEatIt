@@ -7,6 +7,7 @@ import { setOrders } from "../store";
 import { useNavigate } from "react-router-dom";
 const LOCAL_URL = import.meta.env.VITE_LOCAL_URL;
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+console.log(LOCAL_URL);
 const MakeOrderView = () => {
   const [sandwichName, setSandwichName] = useState("");
   const colorsCollection = [
@@ -74,7 +75,7 @@ const MakeOrderView = () => {
             <button
               onClick={() => {
                 setBunType(bread);
-                setFinalStack([`/${data.images
+                setFinalStack([`${data.images
                     .filter((item) => item.name === bread)
                     .map((item) => item.src[0])}`,
                   ...finalStack.slice(1, finalStack.length - 1),
