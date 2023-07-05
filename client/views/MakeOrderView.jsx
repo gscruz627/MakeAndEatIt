@@ -7,7 +7,6 @@ import { setOrders } from "../store";
 import { useNavigate } from "react-router-dom";
 const LOCAL_URL = import.meta.env.VITE_LOCAL_URL;
 const SERVER_URL = import.meta.env.VITE_SERVER_URL;
-console.log(LOCAL_URL);
 const MakeOrderView = () => {
   const [sandwichName, setSandwichName] = useState("");
   const colorsCollection = [
@@ -57,7 +56,7 @@ const MakeOrderView = () => {
       }),
     });
     const orders = await orderRequest.json();
-    dispatch(setOrders({orders: orders}));
+    dispatch(setOrders({ orders: orders }));
     setShowAlert(true);
     setTimeout(() => {
       navigate("/orders");
@@ -75,11 +74,12 @@ const MakeOrderView = () => {
             <button
               onClick={() => {
                 setBunType(bread);
-                setFinalStack([`${data.images
+                setFinalStack([
+                  `${data.images
                     .filter((item) => item.name === bread)
                     .map((item) => item.src[0])}`,
                   ...finalStack.slice(1, finalStack.length - 1),
-                  `/${data.images
+                  `${data.images
                     .filter((item) => item.name === bread)
                     .map((item) => item.src[1])}`,
                 ]);
@@ -108,7 +108,7 @@ const MakeOrderView = () => {
                     if (!mainType) {
                       setFinalStack([
                         ...finalStack.slice(0, finalStack.length - 1),
-                        `${LOCAL_URL}/${data.images
+                        `${data.images
                           .filter((item) => item.name === main)
                           .map((item) => item.src)}`,
                         ...finalStack.slice(finalStack.length - 1),
@@ -116,7 +116,7 @@ const MakeOrderView = () => {
                     } else {
                       setFinalStack([
                         ...finalStack.slice(0, finalStack.length - 2),
-                        `${LOCAL_URL}/${data.images
+                        `${data.images
                           .filter((item) => item.name === main)
                           .map((item) => item.src)}`,
                         ...finalStack.slice(finalStack.length - 1),
@@ -143,7 +143,7 @@ const MakeOrderView = () => {
                     setToppings([...toppings, topping]);
                     setFinalStack([
                       ...finalStack.slice(0, 1),
-                      `${LOCAL_URL}/${data.images
+                      `${data.images
                         .filter((item) => item.name === topping)
                         .map((item) => item.src)}`,
                       ...finalStack.slice(1, finalStack.length),
@@ -216,7 +216,7 @@ const MakeOrderView = () => {
                 padding: "1rem 2rem",
                 width: "100%",
                 borderRadius: "5px",
-                marginTop: "2rem"
+                marginTop: "2rem",
               }}
             >
               Order "{sandwichName}" was added!, redirecting to orders...
