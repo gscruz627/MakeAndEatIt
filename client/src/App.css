@@ -238,7 +238,7 @@ nav div {
 @media screen and (max-width: 768px) {
   nav {
     display: block;
-    height: 100px;
+    height: 110px;
     padding: 1rem;
   }
   nav div {
@@ -260,5 +260,6 @@ nav div {
   }
   .home-container{
     margin: auto auto;
+    padding: 0 1rem;
   }
 }
