@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import "../src/App.css";
-import data from "../public/data.json";
+import data from "/src/data.json";
+import { useDispatch, useSelector } from "react-redux";
+import { setOrders } from "../store";
+import { useNavigate } from "react-router-dom";
 const LOCAL_URL = import.meta.env.VITE_LOCAL_URL;
-
+const SERVER_URL = import.meta.env.VITE_SERVER_URL;
 const MakeOrderView = () => {
   const [sandwichName, setSandwichName] = useState("");
   const colorsCollection = [
@@ -19,15 +22,46 @@ const MakeOrderView = () => {
   const [mainType, setMainType] = useState("");
   const [toppings, setToppings] = useState([]);
   const [finalStack, setFinalStack] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const token = useSelector((state) => state.token);
+  const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleDeleteTopping = (index) => {
-    setFinalStack([...finalStack.slice(0,index+1), ...finalStack.slice(index+2, finalStack.length)])
+    setFinalStack([
+      ...finalStack.slice(0, index + 1),
+      ...finalStack.slice(index + 2, finalStack.length),
+    ]);
     index = toppings.length - index - 1;
     console.log(index);
-    setToppings([...toppings.filter((topping, Lindex) => Lindex !== index)])
-  }
+    setToppings([...toppings.filter((topping, Lindex) => Lindex !== index)]);
+  };
   const toppingsDisplayReverse = toppings.slice().reverse();
-  console.log(toppings);
+
+  const handleMakeOrder = async () => {
+    const orderRequest = await fetch(`${SERVER_URL}/API/order`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Holder " + token,
+      },
+      body: JSON.stringify({
+        name: sandwichName,
+        username: user.username,
+        bun: bunType,
+        main: mainType,
+        toppings,
+        finalStack,
+      }),
+    });
+    const orders = await orderRequest.json();
+    dispatch(setOrders({orders: orders}));
+    setShowAlert(true);
+    setTimeout(() => {
+      navigate("/orders");
+    }, 2000);
+  };
   return (
     <>
       <Navbar />
@@ -51,6 +85,7 @@ const MakeOrderView = () => {
                 ]);
               }}
               className="maker-inner-button"
+              key={index}
               style={{
                 backgroundColor:
                   bunType === bread ? "#FFF" : `${colorsCollection[index]}`,
@@ -67,6 +102,7 @@ const MakeOrderView = () => {
               {data.main.map((main, index) => (
                 <button
                   className="maker-inner-button"
+                  key={index}
                   onClick={() => {
                     setMainType(main);
                     if (!mainType) {
@@ -80,7 +116,9 @@ const MakeOrderView = () => {
                     } else {
                       setFinalStack([
                         ...finalStack.slice(0, finalStack.length - 2),
-                        `${LOCAL_URL}/${data.images.filter( (item) => item.name === main).map((item)=>item.src)}`,
+                        `${LOCAL_URL}/${data.images
+                          .filter((item) => item.name === main)
+                          .map((item) => item.src)}`,
                         ...finalStack.slice(finalStack.length - 1),
                       ]);
                     }
@@ -100,6 +138,7 @@ const MakeOrderView = () => {
               {data.topppings.map((topping, index) => (
                 <button
                   className="maker-inner-button"
+                  key={index}
                   onClick={() => {
                     setToppings([...toppings, topping]);
                     setFinalStack([
@@ -124,31 +163,65 @@ const MakeOrderView = () => {
             className="maker-input"
             value={sandwichName}
             onChange={(event) => setSandwichName(event.target.value)}
-            maxLength="50"
+            maxLength="18"
             placeholder="Name this Order: "
           />
           <div className="sandwich-card">
-            {finalStack.map((item) => (
-              <img src={item} width="100px"/>
+            {finalStack.map((item, index) => (
+              <img key={index} src={item} width="100px" />
             ))}
           </div>
         </div>
         <div className="maker-item">
           <h2>Description</h2>
           <p>Your Order Includes: </p>
-          <p>Type Of Bun: <b>{bunType}</b></p>
-          <p>Main Piece: <b>{mainType}</b></p>
           <p>
-            All toppings:
+            Type Of Bun: <b>{bunType}</b>
           </p>
+          <p>
+            Main Piece: <b>{mainType}</b>
+          </p>
+          <p>All toppings:</p>
           <ul>
             {toppingsDisplayReverse.map((toppings, index) => (
-              <li>- {toppings} <small onClick={ () => handleDeleteTopping(index)}>&times;</small></li>
+              <li key={index}>
+                - {toppings} &nbsp;
+                <small
+                  onClick={() => handleDeleteTopping(index)}
+                  style={{
+                    padding: "0 4px",
+                    color: "#FFF",
+                    fontWeight: "bold",
+                    backgroundColor: "red",
+                    borderRadius: "50%",
+                    cursor: "pointer",
+                  }}
+                >
+                  &times;
+                </small>
+              </li>
             ))}
           </ul>
-          <button onClick={() => handleMakeOrder()}>
-            Order {sandwichName}
-          </button>
+          {bunType && mainType && sandwichName && (
+            <button onClick={() => handleMakeOrder()}>
+              Order {sandwichName}
+            </button>
+          )}
+          {showAlert && (
+            <div
+              style={{
+                backgroundColor: "#ccff99",
+                color: "darkgreen",
+                border: "1px solid darkgreen",
+                padding: "1rem 2rem",
+                width: "100%",
+                borderRadius: "5px",
+                marginTop: "2rem"
+              }}
+            >
+              Order "{sandwichName}" was added!, redirecting to orders...
+            </div>
+          )}
         </div>
       </section>
     </>

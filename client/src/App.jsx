@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./App.css";
+import ErrorScreen from "../views/ErrorScreen.jsx";
 
 function App() {
   const isAuth = useSelector((state) => state.token);
@@ -20,11 +21,11 @@ function App() {
     },
     {
       path: "/orders",
-      element: <AllOrdersView />,
+      element: !isAuth ? <Navigate to="/login"/> : <AllOrdersView />,
     },
     {
       path: "/makeorder",
-      element: <MakeOrderView />,
+      element: !isAuth ? <Navigate to="/login"/> : <MakeOrderView />,
     },
     {
       path: "/register",
@@ -34,6 +35,10 @@ function App() {
       path: "/login",
       element: !isAuth ? <LoginView /> : <Navigate to="/"/>,
     },
+    {
+      path: "/*",
+      element: <ErrorScreen/>
+    }
   ]);
 
   return (

@@ -1,4 +1,4 @@
-:root{
+:root {
   --angularBrown: #2e2c28;
   --solidBeige: #fef1d4;
   --solidGold: #f6c458;
@@ -24,121 +24,220 @@ nav h3 {
   margin: auto 3rem;
   color: var(--solidBeige);
 }
-nav h3:hover, nav h1:hover {
+nav h3:hover,
+nav h1:hover {
   color: var(--solidGold);
 }
 nav div {
-  display:none;
+  display: none;
 }
-.form{
+.form {
   max-width: 300px;
   margin: 3rem auto;
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   justify-content: space-around;
   padding: 2rem;
   border: 1.5px solid darkred;
   border-radius: 5px;
 }
-.form > div:first-child{
+.form > div:first-child {
   margin: -2rem auto 2rem -2rem;
-  text-align:center;
+  text-align: center;
   padding: 0.5rem;
   width: calc(100% + 4rem);
   background-color: darkred;
-  color: #FFF;
+  color: #fff;
 }
-.form h1{
+.form h1 {
   font-family: "Geologica";
 }
-.form *:not(h1){
+.form *:not(h1) {
   font-family: "Rubik";
 }
-.form label{
+.form label {
   font-weight: bold;
 }
-.form label, .form small, .form input, .form button{
+.form label,
+.form small,
+.form input,
+.form button {
   margin: 0.5rem 0;
 }
-.form input{
-  width:100%;
+.form input {
+  width: 100%;
   padding: 0.75rem 1rem;
   outline: none;
   border: none;
 }
-.form button{
-  padding:0.75rem 1rem;
+.form button {
+  padding: 0.75rem 1rem;
   background-color: darkred;
-  color: #FFF;
+  color: #fff;
 }
-.form button:disabled{
+.form button:disabled {
   opacity: 0.5;
 }
-.maker-container{
+#alert {
+  padding: 1rem 2rem;
+  width: 100%;
+  border-radius: 2px;
+  background-color: pink;
+  border: 1px solid red;
+}
+.maker-container {
   display: flex;
   justify-content: space-between;
   margin: 5rem 2rem 2rem 2rem;
 }
-.maker-item{
-  width:100%;
+.maker-item {
+  width: 100%;
   flex: 1;
   padding: 1rem;
-  font-family: 'Rubik';
+  font-family: "Rubik";
   text-align: center;
 }
-.maker-item h2{
+.maker-item h2 {
   font-family: "Geologica";
-  color: var(--angularBrown)
+  color: var(--angularBrown);
 }
-.maker-item:nth-child(2){
+.maker-item:nth-child(2) {
   flex: 2;
 }
-.maker-item input{
-  border:none; outline:none;
+.maker-item input {
+  border: none;
+  outline: none;
   background-color: transparent;
   border-bottom: 2px solid var(--angularBrown);
   width: 80%;
   text-align: center;
   font-size: 24px;
   color: var(--angularBrown);
-  font-family: "Geologica"
+  font-family: "Geologica";
 }
-.maker-item input::placeholder{
+.maker-item input::placeholder {
   opacity: 0.5;
   color: gray;
 }
-.maker-inner-button{
-  padding:0.5rem 1rem;
-  border-radius:25px;
-  color: #FFF;
+.maker-inner-button {
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  color: #fff;
   font-weight: bold;
   margin: 0.2rem;
   transition: all 200ms;
 }
-.maker-inner-button:hover{
-  opacity:0.5;
+.maker-inner-button:hover {
+  opacity: 0.5;
 }
-.maker-item > p{
+.maker-item > p {
   margin-top: 1.5rem;
 }
-.maker-item ul, .maker-item li {
-  text-align:left;
-  list-style-type: circle
+.maker-item ul,
+.maker-item li {
+  text-align: left;
+  list-style-type: circle;
 }
-.sandwich-card{
-  display:flex;
+.maker-item:nth-child(3) button, .home-container button {
+  background-color: var(--angularBrown);
+  color: #fff;
+  border-radius: 3px;
+  font-weight: bold;
+  padding: 1rem 1.5rem;
+  margin-top: 1rem;
+  text-transform: uppercase;
+}
+.maker-item:nth-child(3) button:hover {
+  background-color: #000000;
+}
+.sandwich-card {
+  display: flex;
   flex-direction: column;
-  width:100%;
+  width: 100%;
   margin-top: 2rem;
 }
-.sandwich-card img{
-  width:75%;
+.sandwich-card img {
+  width: 75%;
   margin: auto auto;
 }
-@media screen and (max-width: 768px){
+.orders-container {
+  display: grid;
+  margin: 2rem;
+  grid-template-columns: auto auto auto auto;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+.order-item {
+  position: relative;
+  background-color: #fff;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  border: 2px solid var(--angularBrown);
+  border-radius: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: "Rubik";
+  margin: auto 1rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 400px;
+}
+.order-item .order-img,
+.order-item .order-toppings {
+  max-height: 100px;
+  overflow-y: scroll;
+}
+.order-item h4 {
+  margin: 0.5rem auto;
+}
+.order-item h2 {
+  width: calc(100% + 4rem);
+  margin: 2rem auto 1rem -2rem;
+  background-color: var(--angularBrown);
+  color: #fff;
+  padding: 1rem 2rem;
+  text-align: center;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: sticky;
+  top: -2rem;
+  margin-top: -2rem;
+  z-index: 1;
+}
+.home-container{
+  font-family: 'Rubik';
+  width: min(100%,500px);
+  margin: 5rem auto;
+  text-align: center;
+}
+.home-container img{
+  width: min(100%, 500px);
+  display:block;
+  margin: 2rem auto;
+}
+.home-container h3{
+  margin: 1rem auto;
+  font-weight: bold;
+}
+.home-container a{
+  color: blue;
+}
+@media screen and (max-width: 1168px) {
+  .orders-container {
+    grid-template-columns: auto auto auto;
+  }
+}
+@media screen and (max-width: 952px) {
+  .orders-container {
+    grid-template-columns: auto auto;
+  }
+}
+@media screen and (max-width: 768px) {
   nav {
-    display:block;
+    display: block;
     height: 100px;
     padding: 1rem;
   }
@@ -150,7 +249,16 @@ nav div {
   nav div * {
     display: inline;
   }
-  nav h1{
+  nav h1 {
     font-size: 24px;
+  }
+  .maker-container {
+    display: block;
+  }
+  .orders-container {
+    grid-template-columns: auto;
+  }
+  .home-container{
+    margin: auto auto;
   }
 }
